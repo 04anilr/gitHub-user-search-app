@@ -24,7 +24,7 @@ usernameRef.current?.value === undefined
   setEmpty(true);
   setUser(null);
   return;
-}
+};
 setEmpty(false);
 fetchUser(usernameRef.current.value);
 }
@@ -40,6 +40,8 @@ async function fetchUser(username: string) {
   }
 
   setNotFound(false);
+
+
   const user: UserProps = {
     pfp: data.avatar_url,
     name: data.name,
@@ -115,6 +117,8 @@ id="username"
 type="text" 
 placeholder="Search username ..."
 />
+{empty && <Warn>Enter User</Warn>}
+{notFound && <Warn>Not Found</Warn>}
 
 <SubmitBtn type="submit">Search</SubmitBtn>
 
@@ -134,6 +138,13 @@ align-items: center;
 justify-content: space-between;
 
 `;
+const Warn = styled.small`
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    color: #f74646;
+    margin-right: 2.4rem;
+`
 
 const ChangeThemeBtn = styled.button`
 display: flex;
