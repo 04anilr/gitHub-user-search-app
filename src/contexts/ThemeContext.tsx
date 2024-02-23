@@ -1,0 +1,61 @@
+import { createContext, useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
+
+interface ThemeContextProps {
+    changeTheme: () => void;
+    lightMode: boolean;
+}
+
+export const ThemeContext = createContext({} as ThemeContextProps);
+
+export const ThemeContextProvider = (props: any) => {
+
+    const [lightMode, setLightMode] = useState<boolean>(false);
+    const darkTheme: object = {
+
+        colors: {
+            background: "#000000",
+            themeBtn: "#fff",
+            card: "#232424",
+            textNorm: "#fff",
+            textBolded: "#FFF",
+
+        },
+
+    };
+    const lightTheme: object = {
+
+        colors: {
+            background: "#F6F8FF",
+            themeBtn: "#000000",
+            card: "#FEFEFE",
+            textNorm: "#697C9A",
+            textBolded: "#2B3442",
+
+        },
+    };
+
+function changeTheme(): void {
+    setLightMode(prev => !prev);
+
+}
+useEffect(() => {
+    localStorage.getItem("theme") ==="light" && setLightMode(true);
+
+}, [])
+
+useEffect(() => {
+    const mode = lightMode ? " light" : "dark"
+    localStorage.setItem("theme", mode)
+})
+
+    return (
+        <ThemeContext.Provider value={{ changeTheme, lightMode}}>
+            <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
+                {props.children}
+
+            </ThemeProvider>
+        </ThemeContext.Provider>
+    
+    );
+};
