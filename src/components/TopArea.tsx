@@ -5,8 +5,8 @@ import { TopAreaProps, UserProps } from "../types";
 import { joinedDate } from "../utils/formatter";
 
 
-import { MdLightMode } from "react-icons/md";
-import { MdDarkMode } from "react-icons/md";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
+
 
 
 
@@ -101,11 +101,11 @@ useEffect(() => {
       </ThemeArea>
 
       <InputArea 
-      onSubmit={e => {
-        e.preventDefault();
-        hadleSubmit()
-      }}
-      
+    
+    onSubmit={(e: React.FormEvent) => {
+      e.preventDefault();
+      hadleSubmit()
+    }}
       >
 
       <InputLabel>
