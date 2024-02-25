@@ -102,7 +102,7 @@ useEffect(() => {
 
       <InputArea 
     
-    onSubmit={(e: React.FormEvent) => {
+    onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       hadleSubmit()
     }}
